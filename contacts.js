@@ -10,7 +10,7 @@ async function listContacts() {
 
 async function getContactById(contactId) {
   const contacts = await listContacts();
-  const resContact = contacts.find(({ id }) => parseInt(id) === contactId);
+  const resContact = contacts.find((el) => parseInt(el.id) === parseInt(contactId));
   if (!resContact) return null;
   return resContact;
 };
@@ -18,11 +18,11 @@ async function getContactById(contactId) {
 async function removeContact(contactId) {
     const res = await listContacts();
     const delContactIndex = res.findIndex(
-      ({ id }) => parseInt(id) === contactId
+      ({ id }) => parseInt(id) === parseInt(contactId)
     );
     if (!delContactIndex) return null;
   
-    const delContact = res.splice(delContact, 1);
+    const delContact = res.splice(delContactIndex, 1);
     await fs.writeFile(contactsPath, JSON.stringify(res));
     return delContact;
 }

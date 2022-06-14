@@ -1,4 +1,3 @@
-console.clear();
 const { program } = require('commander');
 const contactsActions = require("./contacts");
 
