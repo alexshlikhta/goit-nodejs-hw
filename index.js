@@ -33,6 +33,7 @@ const setActions = async ({ action, id, name, email, phone }) => {
       console.warn("\x1B[31m Unknown action type!");
   }
 };
+
 program
   .option('-a, --action <type>', 'choose action')
   .option('-i, --id <type>', 'user id')
@@ -42,4 +43,5 @@ program
 
 program.parse(process.argv);
 const options = program.opts();
-setActions(options);
+
+setActions(options).then(()=> console.log('Action complete')).catch(error => console.log(error));
